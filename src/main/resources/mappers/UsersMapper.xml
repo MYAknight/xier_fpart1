@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.healthcare.mapper.TUserMapper">
+    <select id="getOneUser" resultType="com.healthcare.entity.TUser">
+        select id id,point point,username username, password password,email email,
+               photo photo, setTime setTime from users where username=#{username}
+    </select>
+
+    <select id="getAllUser" >
+        select id id,point point,username username, password password,email email,
+               photo photo, setTime setTime from users
+    </select>
+
+    <update id="changePoint">
+        update users
+        set point=#{point}
+        where id = #{id}
+    </update>
+
+</mapper>

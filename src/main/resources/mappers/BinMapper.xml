@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.healthcare.mapper.BinMapper">
+    <select id="getOneBin" resultType="com.healthcare.entity.Bin">
+        select PK_BID      id,
+               Blatitude   latitude,
+               Blevel      level,
+               Bstate      state,
+               BotherThing otherThing,
+               Blongitude  longitude
+        from T_binList
+        where PK_BID = #{id}
+    </select>
+
+    <select id="getWarnBin" resultType="com.healthcare.entity.Bin">
+        select PK_BID      id,
+               Blatitude   latitude,
+               Blevel      level,
+               Bstate      state,
+               BotherThing otherThing,
+               Blongitude  longitude
+        from T_binList
+        where Bstate = 0
+    </select>
+
+    <select id="getAllBin" resultType="com.healthcare.entity.Bin">
+        select PK_BID      id,
+               Blatitude   latitude,
+               Blevel      level,
+               Bstate      state,
+               BotherThing otherThing,
+               Blongitude  longitude
+        from T_binList
+    </select>
+
+    <update id="changeLevel">
+        update T_binList
+        set Blevel=#{level}
+        where PK_BID = #{id}
+    </update>
+
+    <update id="changeOtherThing">
+        update T_binList
+        set BotherThing=#{otherThing}
+        where PK_BID = #{id}
+    </update>
+
+    <update id="changeBinInf">
+        update T_binList
+        set Bstate=#{state},
+            Blevel=#{level},
+            BotherThing=#{otherThing},
+            Blatitude=#{latitude},
+            Blongitude=#{longitude}
+        where PK_BID = #{id}
+    </update>
+
+    <!--按照ID删除垃圾桶信息-->
+    <delete id="deleteBinByID" parameterType="int">
+        delete
+        from T_binList
+        where PK_BID = #{id};
+    </delete>
+</mapper>
